@@ -1,7 +1,7 @@
 const searchInput=document.querySelector("#search-input")
 const products=document.querySelectorAll(".product-item")
-// const products=document.querySelector("#products")
-
+const buttons=document.querySelectorAll(".filter")
+console.log(buttons)
 const searchHandler=event=>{ 
      const searchValue=event.target.value.toLowerCase().trim()
      products.forEach((product)=>{
@@ -15,3 +15,32 @@ const searchHandler=event=>{
      })
 }
 searchInput.addEventListener("keyup",searchHandler)
+
+const changeClass=filter=>{
+     buttons.forEach(button=>{
+         if(button.dataset.filter===filter){
+            button.classList.add("selected")
+         }
+         else{
+             button.classList.remove("selected")
+         }
+     })
+}
+  const filterHandler=(event)=>{        
+      const filter=event.target.dataset.filter
+      changeClass(filter)
+      products.forEach(product=>{
+        const category=product.dataset.category
+        if(filter==="all"){             
+             product.style.display="block"
+        }
+          else{
+             filter===category?  
+              product.style.display="block":
+               product.style.display="none"
+          }
+      })
+     }  
+buttons.forEach(button=>{
+    button.addEventListener("click",filterHandler)
+})

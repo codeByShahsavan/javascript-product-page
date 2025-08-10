@@ -73,6 +73,11 @@ justify-content: space-between;
     padding: 5px 10px;
     border-radius: 10px;
 }
+.selected{
+    background-color: #f6f6f7;
+    color: #220efa;
+    border: 2px solid #220efa;
+}
 @media (max-width:1000px) {
     #search{
         display: flex;
