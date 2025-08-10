@@ -43,9 +43,7 @@ const changeClass=filter=>{
           }
       })
      }  
-buttons.forEach(button=>{
-    button.addEventListener("click",filterHandler)
-})
+
 
 const searchPriceHandler=event=>{
    const searchPrice= +event.target.parentElement.children[0].value
@@ -61,5 +59,13 @@ const searchPriceHandler=event=>{
    })
    
 }
+
+
+const start=()=>{
+    buttons.forEach(button=>{
+    button.addEventListener("click",filterHandler)
+})
 searchInput.addEventListener("keyup",searchHandler)
 priceButton.addEventListener("click",searchPriceHandler)
+}
+window.addEventListener("load",start)
