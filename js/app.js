@@ -1,6 +1,8 @@
 const searchInput=document.querySelector("#search-input")
 const products=document.querySelectorAll(".product-item")
 const buttons=document.querySelectorAll(".filter")
+const priceButton=document.getElementById("search-box-price").querySelector("button")
+console.log(priceButton)
 console.log(buttons)
 const searchHandler=event=>{ 
      const searchValue=event.target.value.toLowerCase().trim()
@@ -14,7 +16,7 @@ const searchHandler=event=>{
         }
      })
 }
-searchInput.addEventListener("keyup",searchHandler)
+
 
 const changeClass=filter=>{
      buttons.forEach(button=>{
@@ -44,3 +46,20 @@ const changeClass=filter=>{
 buttons.forEach(button=>{
     button.addEventListener("click",filterHandler)
 })
+
+const searchPriceHandler=event=>{
+   const searchPrice= +event.target.parentElement.children[0].value
+   products.forEach((product)=>{
+    productPrice=product.children[2].innerText
+    const price=+productPrice.split(" ")[1]
+    if(!searchPrice){
+         product.style.display="block"
+    }else{
+        searchPrice===price?product.style.display="block":product.style.display="none"
+    }
+    
+   })
+   
+}
+searchInput.addEventListener("keyup",searchHandler)
+priceButton.addEventListener("click",searchPriceHandler)
